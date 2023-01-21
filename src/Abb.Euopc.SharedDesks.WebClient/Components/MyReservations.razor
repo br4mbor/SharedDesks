@@ -1,0 +1,58 @@
+﻿<MudContainer Class="ma-0 pa-0" MaxWidth="MaxWidth.False">
+    <MudTable Breakpoint="Breakpoint.Xs"
+              Elevation="1"
+              Hover="true"
+              RowsPerPage="5"
+              ServerData="@(new Func<TableState, Task<TableData<Reservation>>>(LoadReservations))"
+              Striped="true"
+              @ref="_table">
+        <ToolBarContent>
+            <div class="d-flex flex-row flex-wrap align-center">
+                <MudText Class="mr-6" Typo="Typo.h6">Reservations</MudText>
+                <MudRadioGroup T="ReservationsFilterParameter" SelectedOption="@_filter" SelectedOptionChanged="@OnFilterChanged">
+                    <MudRadio Color="Color.Primary" Dense="true" Size="Size.Small" Option="ReservationsFilterParameter.ReservedFor">For me</MudRadio>
+                    <MudRadio Color="Color.Primary" Dense="true" Size="Size.Small" Option="ReservationsFilterParameter.CreatedBy">By me</MudRadio>
+                    <MudRadio Color="Color.Primary" Dense="true" Size="Size.Small" Option="ReservationsFilterParameter.Both">Both</MudRadio>
+                </MudRadioGroup>
+            </div>
+        </ToolBarContent>
+        <HeaderContent>
+            <MudTh>Date</MudTh>
+            <MudTh>For</MudTh>
+            <MudTh>Desk</MudTh>
+            <MudTh Style="text-align: end;">Actions</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Date">@context.Date.ToString("ddd, yyyy-MM-dd")</MudTd>
+            <MudTd DataLabel="For">@context.ReservedForEmail</MudTd>
+            <MudTd DataLabel="Desk">@context.Desk?.Label</MudTd>
+            <MudTd DataLabel="Actions" Style="text-align: end;">
+                <MudIconButton Color="Color.Error"
+                               DisableElevation="true"
+                               Icon="@Icons.Material.Filled.Cancel"
+                               OnClick="@(async (e) => await CancelReservation(context))"
+                               Size="Size.Small"
+                               Variant="Variant.Outlined" />
+            </MudTd>
+        </RowTemplate>
+        <NoRecordsContent>
+            <MudText>No reservations found</MudText>
+        </NoRecordsContent>
+        <LoadingContent>
+            <MudText>Loading...</MudText>
+        </LoadingContent>
+        <PagerContent>
+            <MudTablePager PageSizeOptions="@(new[] { 5 , 10 })" />
+        </PagerContent>
+    </MudTable>
+</MudContainer>
+
+<MudMessageBox Title="Cancel reservation" NoText="No" @ref="_cancelReservationMessageBox">
+    <YesButton>
+        <MudButton Class="ml-2"
+                   Color="Color.Error"
+                   DisableElevation="true"
+                   Variant="Variant.Filled"
+                   StartIcon="@Icons.Material.Filled.Cancel">Yes, cancel!</MudButton>
+    </YesButton>
+</MudMessageBox>

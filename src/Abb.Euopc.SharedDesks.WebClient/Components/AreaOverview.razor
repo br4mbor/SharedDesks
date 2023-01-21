@@ -1,0 +1,76 @@
+﻿<MudContainer Class="ma-0 pa-0" MaxWidth="MaxWidth.False">
+    <div class="d-flex flex-row flex-wrap">
+        <MudText Class="ml-2 mr-6 align-self-center" Typo="Typo.h6">Area overview</MudText>
+
+        <div class="d-flex flex-row flex-wrap flex-grow-1">
+            <MudSelect AnchorOrigin="Origin.BottomCenter"
+                       Class="mr-4"
+                       Clearable="true"
+                       CloseIcon="@Icons.Material.Filled.KeyboardArrowUp"
+                       Dense="true"
+                       Margin="Margin.Dense"
+                       MultiSelection="false"
+                       OpenIcon="@Icons.Material.Filled.KeyboardArrowDown"
+                       Placeholder="Select area..."
+                       SelectAll="false"
+                       T="Area"
+                       Variant="Variant.Outlined"
+                       ValueChanged="@SelectedAreaChanged">
+                @foreach (var area in _areas)
+                {
+                    <MudSelectItem Value="@area">@area.Name (Floor: @area.Floor)</MudSelectItem>
+                }
+            </MudSelect>
+
+            <MudSelect AnchorOrigin="Origin.BottomCenter"
+                       Class="flex-grow-0"
+                       CloseIcon="@Icons.Material.Filled.KeyboardArrowUp"
+                       Dense="true"
+                       Margin="Margin.Dense"
+                       MultiSelection="false"
+                       OpenIcon="@Icons.Material.Filled.KeyboardArrowDown"
+                       Placeholder="Select day..."
+                       SelectAll="false"
+                       T="DateTime"
+                       Variant="Variant.Outlined"
+                       Value="@_selectedDate"
+                       ValueChanged="@SelectedDateChanged">
+                @foreach (var date in _dates)
+                {
+                    <MudSelectItem Value="@date">@date.ToString("ddd, yyyy-MM-dd")</MudSelectItem>
+                }
+            </MudSelect>
+        </div>
+    </div>
+    @if (SelectedArea is not null)
+    {
+        <div class="d-flex flex-column">
+            @if (!string.IsNullOrEmpty(SelectedArea.ImageUrl))
+            {
+                <MudImage Fluid="true" Alt="@SelectedArea.Name" Src="@SelectedArea.ImageUrl" />
+            }
+
+            @if (_loadingDesks)
+            {
+                <MudProgressLinear Class="mt-2" Color="Color.Primary" Indeterminate="true" />
+                <MudText Align="Align.Center" Typo="Typo.body1">Loading available desks...</MudText>
+            }
+            else
+            {
+                <MudText Class="ml-2 mb-4" Typo="Typo.subtitle1">Available desks: @_desks.Where(d => d.Reservation is null).Count()</MudText>
+                <MudGrid Justify="Justify.FlexStart" Spacing="2">
+                    @foreach (var desk in _desks)
+                    {
+                        <MudItem xs="6" sm="3" md="4" lg="3" xl="2">
+                            <DeskCard Desk="@desk" ReserveButtonDisabled="@_reservationInProgress" ReserveButtonClick="@(async _ => await CreateReservationAsync(desk))" />
+                        </MudItem>
+                    }
+                </MudGrid>
+            }
+        </div>
+    }
+</MudContainer>
+
+<MudOverlay Visible="_reservationInProgress" DarkBackground="true" Absolute="false" AutoClose="false">
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+</MudOverlay>

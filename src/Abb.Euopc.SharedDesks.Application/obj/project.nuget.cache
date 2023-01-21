@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "skn9PPMihPpmB9HZRUr5NoAXTLZ0h9MrB2N0En4q+Cd4dekfZXK+xJ0URtcgF8hvO/vKdY03Bq91+CWcGBdq7A==",
+  "success": true,
+  "projectFilePath": "/Users/jakubkulhavy/Development/Repos/GitHub/br4mbor/SharedDesks/src/Abb.Euopc.SharedDesks.Application/Abb.Euopc.SharedDesks.Application.csproj",
+  "expectedPackageFiles": [
+    "/Users/jakubkulhavy/.nuget/packages/fluentvalidation/11.4.0/fluentvalidation.11.4.0.nupkg.sha512",
+    "/Users/jakubkulhavy/.nuget/packages/microsoft.extensions.configuration.abstractions/6.0.0/microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
+    "/Users/jakubkulhavy/.nuget/packages/microsoft.extensions.configuration.binder/6.0.0/microsoft.extensions.configuration.binder.6.0.0.nupkg.sha512",
+    "/Users/jakubkulhavy/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "/Users/jakubkulhavy/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.3/microsoft.extensions.logging.abstractions.6.0.3.nupkg.sha512",
+    "/Users/jakubkulhavy/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "/Users/jakubkulhavy/.nuget/packages/microsoft.extensions.options.configurationextensions/6.0.0/microsoft.extensions.options.configurationextensions.6.0.0.nupkg.sha512",
+    "/Users/jakubkulhavy/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "/Users/jakubkulhavy/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

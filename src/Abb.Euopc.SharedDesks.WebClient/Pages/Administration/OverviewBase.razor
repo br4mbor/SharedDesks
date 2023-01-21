@@ -1,0 +1,16 @@
+﻿@typeparam TEntity
+@typeparam TEntityService
+@typeparam TDetailDialogType
+
+<MudMessageBox Title="@($"Delete {EntityName}")" CancelText="Cancel" @ref="_deleteMessageBox">
+    <MessageContent>
+        Do you want to delete @EntityName?
+    </MessageContent>
+    <YesButton>
+        <MudButton Class="ml-2"
+                   Color="Color.Error"
+                   DisableElevation="true"
+                   Variant="Variant.Filled"
+                   StartIcon="@Icons.Material.Filled.Delete">Delete</MudButton>
+    </YesButton>
+</MudMessageBox>

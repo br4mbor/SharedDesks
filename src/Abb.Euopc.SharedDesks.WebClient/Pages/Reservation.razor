@@ -1,0 +1,55 @@
+﻿@attribute [Route(Routes.Reservation)]
+
+<MudGrid Justify="Justify.SpaceBetween">
+    <MudItem xs="12" sm="5" md="4" lg="3" xl="2">
+        <MudPaper Class="pa-2" Elevation="1">
+            <DeskFilter OnFilterSubmit="@GetDesksAsync" OnSelectedDatesChanged="@Reset" />
+        </MudPaper>
+    </MudItem>
+
+    <MudItem xs="12" sm="7" md="8" lg="9" xl="10">
+        <MudContainer Class="ma-0 mb-4 pa-0 d-flex flex-wrap" MaxWidth="MaxWidth.False">
+            <MudSwitch Class="ml-0 mr-2"
+                       Color="Color.Primary"
+                       Label="Reserve for myself"
+                       LabelPosition="LabelPosition.Start"
+                       @bind-Checked="ReserveForMyself" />
+
+            <MudTextField Disabled="@ReserveForMyself"
+                          InputType="InputType.Email"
+                          Margin="Margin.Dense"
+                          Placeholder="Person email..."
+                          Style="min-width: 250px;"
+                          Validation="@ValidateReserveForEmail"
+                          Variant="Variant.Outlined"
+                          @bind-Value="ReserveForEmail"
+                          @ref="_emailField" />
+        </MudContainer>
+
+        @if (_desks is null)
+        {
+            <MudText Align="Align.Center" Typo="Typo.body1">Please search for a desk to reserve.</MudText>
+        }
+        else if (_desks.Any())
+        {
+            <MudGrid Justify="Justify.FlexStart" Spacing="2">
+                @foreach (var desk in _desks)
+                {
+                    <MudItem xs="6" md="4" lg="3" xl="2">
+                        <DeskCard Desk="@desk"
+                          ReserveButtonDisabled="@(!(ValidateReserveForEmail(ReserveForEmail)) || _deskFilter is null || _reservationInProgress)"
+                          ReserveButtonClick="@(async _ => await CreateReservationAsync(desk.Id))" />
+                    </MudItem>
+                }
+            </MudGrid>
+        }
+        else
+        {
+            <MudText Align="Align.Center" Typo="Typo.body1">No desks found. Try to change filter.</MudText>
+        }
+    </MudItem>
+</MudGrid>
+
+<MudOverlay Visible="_reservationInProgress" DarkBackground="true" Absolute="false" AutoClose="false">
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+</MudOverlay>

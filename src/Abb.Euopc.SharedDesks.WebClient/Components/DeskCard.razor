@@ -1,0 +1,30 @@
+﻿<MudCard Class="d-flex flex-column justify-space-between" Style="height: 100%">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">@Desk?.Label</MudText>
+            <MudText Typo="Typo.subtitle2">@Desk?.Area?.Name</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        @if (Desk?.Reservation is not null)
+        {
+            <MudText title="@Desk.Reservation.ReservedForEmail" Style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;" Typo="Typo.body1">@Desk.Reservation.ReservedForEmail</MudText>
+        }
+    </MudCardContent>
+    <MudCardActions>
+        <MudIconButton DisableElevation="true"
+                       Icon="@Icons.Material.Filled.Search"
+                       OnClick="@ShowDetail"
+                       Size="Size.Small"
+                       Title="Detail" />
+
+        <MudSpacer />
+
+        <MudButton Color="Color.Primary"
+                   Disabled="@(ReserveButtonDisabled || Desk?.Reservation is not null)"
+                   DisableElevation="true"
+                   OnClick="@ReserveButtonClick"
+                   Size="Size.Small"
+                   Variant="Variant.Filled">Reserve</MudButton>
+    </MudCardActions>
+</MudCard>

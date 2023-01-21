@@ -1,0 +1,71 @@
+﻿@inherits DetailDialogBase<Desk, IDeskService, DeskValidator>
+
+<MudDialog>
+    <DialogContent>
+        <MudForm Model="@_model" Validation="@(Validator.ValidateValue)" @bind-IsValid="_formValid" @ref="_form">
+            <MudTextField For="@(() => _model.Label)"
+                          Immediate="false"
+                          Label="Label"
+                          @bind-Value="_model.Label" />
+
+            <MudSelect For="@(() => _model.Area)"
+                       Immediate="true"
+                       Label="Area"
+                       T="Area"
+                       ToStringFunc="@((a) => a?.Name)"
+                       Clearable="true"
+                       Placeholder="Select area..."
+                       @bind-Value="_model.Area">
+                @foreach (var area in _areas)
+                {
+                    <MudSelectItem Value="@area" />
+                }
+            </MudSelect>
+
+            <div class="d-flex align-center justify-space-between">
+                <MudFileUpload T="IBrowserFile"
+                               Accept=".png"
+                               MaximumFileCount="1"
+                               @bind-Files="_deskImage">
+                    <ButtonTemplate>
+                        <MudButton HtmlTag="label"
+                                   DisableElevation="true"
+                                   Variant="Variant.Filled"
+                                   StartIcon="@Icons.Material.Filled.Image"
+                                   for="@context">
+                            Desk image
+                        </MudButton>
+                    </ButtonTemplate>
+                </MudFileUpload>
+                <MudText Class="ml-4" Typo="Typo.body1">@_deskImage?.Name</MudText>
+            </div>
+
+            <MudSelect Immediate="true"
+                       Label="Item"
+                       Placeholder="Item to add..."
+                       SelectedValuesChanged="@AddItem"
+                       T="DeskItem"
+                       ToStringFunc="@((i) => i?.Name)"
+                       @bind-Value="_itemToAdd">
+                @foreach (var item in _items)
+                {
+                    <MudSelectItem Value="@item" />
+                }
+            </MudSelect>
+
+            @foreach (var item in _model.DeskItemsToDesks)
+            {
+                <MudChip Color="Color.Success" OnClose="@RemoveItem" Value="@item">@item.DeskItem?.Name</MudChip>
+            }
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="@Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Primary"
+                   Disabled="@(!_formValid || (!_form?.IsTouched ?? true))"
+                   DisableElevation="true"
+                   StartIcon="@Icons.Material.Filled.Save"
+                   OnClick="@Save"
+                   Variant="Variant.Filled">Save</MudButton>
+    </DialogActions>
+</MudDialog>

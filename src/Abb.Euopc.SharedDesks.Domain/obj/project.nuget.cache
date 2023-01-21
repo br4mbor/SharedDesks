@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "k6NG+24FA8l2qpJVeBhi40bwFFLcxYDZbMDO77ib+b7wcXPOmpTI7yjx+mRrOcWa60w3ovjcWdFtEf6MUr5vDQ==",
+  "success": true,
+  "projectFilePath": "/Users/jakubkulhavy/Development/Repos/GitHub/br4mbor/SharedDesks/src/Abb.Euopc.SharedDesks.Domain/Abb.Euopc.SharedDesks.Domain.csproj",
+  "expectedPackageFiles": [
+    "/Users/jakubkulhavy/.nuget/packages/fluentvalidation/11.4.0/fluentvalidation.11.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}

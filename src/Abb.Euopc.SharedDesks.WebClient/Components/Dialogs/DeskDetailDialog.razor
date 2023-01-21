@@ -1,0 +1,27 @@
+﻿<MudDialog>
+    <DialogContent>
+        @if (_desk is null)
+        {
+            <MudText Align="Align.Center" Typo="Typo.body1">No desk found with id @DeskId.</MudText>
+        }
+        else
+        {
+            <MudContainer Class="mb-2 pa-0 d-flex flex-column justify-start" MaxWidth="MaxWidth.False" Style="max-height: 450px; overflow-y: scroll">
+                <MudTextField Value="@_desk.Area?.Name" Label="Area" ReadOnly="true" />
+                <MudTextField Value="@_desk.Area?.Floor" Label="Floor" ReadOnly="true" />
+
+                <div class="mt-4">
+                    @foreach (var item in _desk.DeskItemsToDesks)
+                    {
+                        <MudChip Color="Color.Success" Value="@item">@item.DeskItem?.Name</MudChip>
+                    }
+                </div>
+
+                @if (_desk.HasImage)
+                {
+                    <MudImage Fluid="true" Alt="@_desk.Label" ObjectFit="ObjectFit.Fill" Src="@_desk.ImageUrl" />
+                }
+            </MudContainer>
+        }
+    </DialogContent>
+</MudDialog>

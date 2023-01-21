@@ -1,0 +1,13 @@
+﻿@attribute [Route(Routes.Dashboard)]
+
+<MudGrid>
+    <MudItem xs="12" md="6" lg="5">
+        <MyReservations @ref="_myReservations" ReservationCancelled="@OnReservationCancelled" />
+    </MudItem>
+
+    <MudItem xs="12" md="6" lg="7">
+        <MudPaper Class="pa-2" Elevation="1">
+            <AreaOverview @ref="_areaOverview" ReservationCreated="@OnReservationCreated" />
+        </MudPaper>
+    </MudItem>
+</MudGrid>

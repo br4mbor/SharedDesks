@@ -1,0 +1,77 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abb.Euopc.SharedDesks.WebClient", "src\Abb.Euopc.SharedDesks.WebClient\Abb.Euopc.SharedDesks.WebClient.csproj", "{C6EFB406-1261-4107-95F8-45A33C83A9BA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{79F8B6BB-10E2-427F-9655-70EDD3336EA5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{332C1047-11DA-47EC-9B11-81AB37621170}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{31D344F7-01B7-4090-B4C1-CF6FF9521F0D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{527323F3-2407-4A2E-A267-3A0930FEF352}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abb.Euopc.SharedDesks.EF", "src\Abb.Euopc.SharedDesks.EF\Abb.Euopc.SharedDesks.EF.csproj", "{CD17FCF7-FFA8-4C06-9244-3564D538EC4A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{35547ABB-745E-4D44-B377-78EB6CE3B3B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AD635D0F-3D4C-4104-98F3-743933F98B34}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		nuget.config = nuget.config
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abb.Euopc.SharedDesks.Application", "src\Abb.Euopc.SharedDesks.Application\Abb.Euopc.SharedDesks.Application.csproj", "{65D30273-77E3-4A9D-890B-5FDC276C6F91}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abb.Euopc.SharedDesks.Domain", "src\Abb.Euopc.SharedDesks.Domain\Abb.Euopc.SharedDesks.Domain.csproj", "{B6D2E31D-4DCD-4663-A8BA-C256EDC21A3C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abb.Euopc.SharedDesks.Infrastructure", "src\Abb.Euopc.SharedDesks.Infrastructure\Abb.Euopc.SharedDesks.Infrastructure.csproj", "{BCDFBBBC-D540-48ED-B327-10C3E03795D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C6EFB406-1261-4107-95F8-45A33C83A9BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6EFB406-1261-4107-95F8-45A33C83A9BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6EFB406-1261-4107-95F8-45A33C83A9BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6EFB406-1261-4107-95F8-45A33C83A9BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD17FCF7-FFA8-4C06-9244-3564D538EC4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD17FCF7-FFA8-4C06-9244-3564D538EC4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD17FCF7-FFA8-4C06-9244-3564D538EC4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD17FCF7-FFA8-4C06-9244-3564D538EC4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65D30273-77E3-4A9D-890B-5FDC276C6F91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65D30273-77E3-4A9D-890B-5FDC276C6F91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65D30273-77E3-4A9D-890B-5FDC276C6F91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65D30273-77E3-4A9D-890B-5FDC276C6F91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6D2E31D-4DCD-4663-A8BA-C256EDC21A3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6D2E31D-4DCD-4663-A8BA-C256EDC21A3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6D2E31D-4DCD-4663-A8BA-C256EDC21A3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6D2E31D-4DCD-4663-A8BA-C256EDC21A3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCDFBBBC-D540-48ED-B327-10C3E03795D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCDFBBBC-D540-48ED-B327-10C3E03795D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCDFBBBC-D540-48ED-B327-10C3E03795D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCDFBBBC-D540-48ED-B327-10C3E03795D8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C6EFB406-1261-4107-95F8-45A33C83A9BA} = {527323F3-2407-4A2E-A267-3A0930FEF352}
+		{79F8B6BB-10E2-427F-9655-70EDD3336EA5} = {35547ABB-745E-4D44-B377-78EB6CE3B3B4}
+		{332C1047-11DA-47EC-9B11-81AB37621170} = {35547ABB-745E-4D44-B377-78EB6CE3B3B4}
+		{31D344F7-01B7-4090-B4C1-CF6FF9521F0D} = {35547ABB-745E-4D44-B377-78EB6CE3B3B4}
+		{527323F3-2407-4A2E-A267-3A0930FEF352} = {35547ABB-745E-4D44-B377-78EB6CE3B3B4}
+		{CD17FCF7-FFA8-4C06-9244-3564D538EC4A} = {79F8B6BB-10E2-427F-9655-70EDD3336EA5}
+		{65D30273-77E3-4A9D-890B-5FDC276C6F91} = {31D344F7-01B7-4090-B4C1-CF6FF9521F0D}
+		{B6D2E31D-4DCD-4663-A8BA-C256EDC21A3C} = {332C1047-11DA-47EC-9B11-81AB37621170}
+		{BCDFBBBC-D540-48ED-B327-10C3E03795D8} = {79F8B6BB-10E2-427F-9655-70EDD3336EA5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0AD8D138-E773-465E-BFA9-5333E13688F9}
+	EndGlobalSection
+EndGlobal

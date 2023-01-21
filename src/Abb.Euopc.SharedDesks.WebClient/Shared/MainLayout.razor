@@ -1,0 +1,90 @@
+@inherits LayoutComponentBase
+
+<PageTitle>EUOPC SharedDesks</PageTitle>
+
+<MudThemeProvider Theme="@_abbTheme" IsDarkMode="false" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<CascadingValue Name="CurrentUserEmail" Value="@CurrentUserEmail">
+    <MudLayout>
+        <MudAppBar Dense="true" Fixed="true" Elevation="1">
+            <span class="logo d-none d-sm-flex"></span>
+            <MudIconButton Class="d-sm-none" Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+
+            <span class="appName ml-4">Shared Desks</span>
+
+            <div class="d-none d-sm-flex ml-6">
+                <MudButton Href="@Routes.Dashboard" StartIcon="@Icons.Material.Filled.Dashboard">Dashboard</MudButton>
+                <MudButton Href="@Routes.Reservation" StartIcon="@Icons.Material.Filled.AddBox">Reservation</MudButton>
+
+                <AuthorizeView Roles="Administrator">
+                    <Authorized>
+                        <MudMenu Label="Administration"
+                                 Dense="true"
+                                 StartIcon="@Icons.Material.Filled.AdminPanelSettings"
+                                 EndIcon="@Icons.Material.Filled.KeyboardArrowDown"
+                                 FullWidth="true"
+                                 ActivationEvent="MouseEvent.MouseOver"
+                                 AnchorOrigin="Origin.TopLeft">
+                            <MudMenuItem Href="@Routes.Admin.Area.Overview">Areas</MudMenuItem>
+                            <MudMenuItem Href="@Routes.Admin.Desk.Overview">Desks</MudMenuItem>
+                            <MudMenuItem Href="@Routes.Admin.DeskItem.Overview">Desk items</MudMenuItem>
+                            <MudMenuItem Href="@Routes.Admin.DeskItemType.Overview">Desk item types</MudMenuItem>
+                        </MudMenu>
+                    </Authorized>
+                </AuthorizeView>
+            </div>
+
+            <MudSpacer />
+
+            <MudText Class="d-none d-md-block" Typo="Typo.button">@CurrentUserEmail</MudText>
+
+            <MudMenu Class="mr-n2 mr-sm-0 ml-4" Dense="true" AnchorOrigin="Origin.BottomRight">
+                <ActivatorContent>
+                    <MudAvatar>
+                        @if (!string.IsNullOrEmpty(Photo))
+                        {
+                            <img src="data:image/jpeg;base64, @Photo" style="height: 100%;" />
+                        }
+                        else
+                        {
+                            <MudIcon Icon="@Icons.Material.Filled.Person" />
+                        }
+                    </MudAvatar>
+                </ActivatorContent>
+                <ChildContent>
+                    <MudText Class="d-flex d-md-none justify-center px-4" Typo="Typo.button">@CurrentUserEmail</MudText>
+                    <MudDivider Class="d-md-none mt-1 mb-2" DividerType="DividerType.Middle" />
+                    <MudMenuItem OnClick="@(() => NavigationManager.NavigateTo("MicrosoftIdentity/Account/SignOut", true))">Sign Out</MudMenuItem>
+                </ChildContent>
+            </MudMenu>
+        </MudAppBar>
+
+        <MudDrawer @bind-Open="_drawerOpen">
+            <MudDrawerHeader>
+                <span class="logo"></span>
+            </MudDrawerHeader>
+            <MudNavMenu Dense="false" Bordered="true">
+                <MudNavLink Href="@Routes.Dashboard" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Dashboard">Dashboard</MudNavLink>
+                <MudNavLink Href="@Routes.Reservation" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.AddBox">Reservation</MudNavLink>
+                <AuthorizeView Roles="Administrator">
+                    <Authorized>
+                        <MudNavGroup Title="Administration" Expanded="true" Icon="@Icons.Material.Filled.AdminPanelSettings" ExpandIcon="@Icons.Material.Filled.KeyboardArrowUp">
+                            <MudNavLink Href="@Routes.Admin.Area.Overview" Match="NavLinkMatch.All">Areas</MudNavLink>
+                            <MudNavLink Href="@Routes.Admin.Desk.Overview" Match="NavLinkMatch.All">Desks</MudNavLink>
+                            <MudNavLink Href="@Routes.Admin.DeskItem.Overview" Match="NavLinkMatch.All">Desk items</MudNavLink>
+                            <MudNavLink Href="@Routes.Admin.DeskItemType.Overview" Match="NavLinkMatch.All">Desk item types</MudNavLink>
+                        </MudNavGroup>
+                    </Authorized>
+                </AuthorizeView>
+            </MudNavMenu>
+        </MudDrawer>
+
+        <MudMainContent>
+            <MudContainer Class="mt-3 mb-3 px-3" MaxWidth="MaxWidth.False">
+                @Body
+            </MudContainer>
+        </MudMainContent>
+    </MudLayout>
+</CascadingValue>

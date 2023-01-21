@@ -1,0 +1,21 @@
+﻿@inherits DetailDialogBase<DeskItemType, IDeskItemTypeService, DeskItemTypeValidator>
+
+<MudDialog>
+    <DialogContent>
+        <MudForm Model="@_model" Validation="@(Validator.ValidateValue)" @bind-IsValid="_formValid" @ref="_form">
+            <MudTextField For="@(() => _model.Name)"
+                          Immediate="true"
+                          Label="Name"
+                          @bind-Value="_model.Name" />
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="@Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Primary"
+                   Disabled="@(!_formValid || (!_form?.IsTouched ?? true))"
+                   DisableElevation="true"
+                   StartIcon="@Icons.Material.Filled.Save"
+                   OnClick="@Save"
+                   Variant="Variant.Filled">Save</MudButton>
+    </DialogActions>
+</MudDialog>

@@ -1,0 +1,53 @@
+﻿@attribute [Route(Routes.Admin.DeskItem.Overview)]
+@attribute [Authorize(Roles = "Administrator")]
+@inherits OverviewBase<DeskItem, IDeskItemService, DeskItemDetailDialog>
+
+<MudTable Breakpoint="Breakpoint.None"
+          Hover="true"
+          ServerData="@LoadDataAsync"
+          Striped="true"
+          @ref="_table">
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">Desk items</MudText>
+        <MudSpacer />
+        <MudIconButton Color="Color.Success"
+                       DisableElevation="true"
+                       Icon="@Icons.Material.Filled.Add"
+                       OnClick="@Add"
+                       Variant="Variant.Filled" />
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh>Name</MudTh>
+        <MudTh>Type</MudTh>
+        <MudTh Style="text-align: end;">Actions</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Name">@context.Name</MudTd>
+        <MudTd DataLabel="Type">@context.Type?.Name</MudTd>
+        <MudTd DataLabel="Actions" Style="text-align: end;">
+            <MudIconButton Class="mr-2"
+                           Color="Color.Success"
+                           DisableElevation="true"
+                           Icon="@Icons.Material.Filled.Edit"
+                           OnClick="@(async _ => await Edit(context.Id))"
+                           Size="Size.Small"
+                           Variant="Variant.Outlined" />
+            <MudIconButton Color="Color.Error"
+                           DisableElevation="true"
+                           Icon="@Icons.Material.Filled.Delete"
+                           OnClick="@(async _ => await Delete(context))"
+                           Size="Size.Small"
+                           Variant="Variant.Outlined" />
+        </MudTd>
+    </RowTemplate>
+    <NoRecordsContent>
+        <MudText>No desk items</MudText>
+    </NoRecordsContent>
+    <LoadingContent>
+        <MudText>Loading...</MudText>
+    </LoadingContent>
+</MudTable>
+
+@{
+    base.BuildRenderTree(__builder);
+}

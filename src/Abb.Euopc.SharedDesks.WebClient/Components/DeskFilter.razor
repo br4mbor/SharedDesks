@@ -1,0 +1,51 @@
+﻿<MudContainer Class="ma-0 pa-0" MaxWidth="MaxWidth.False">
+    <MudText Class="ml-2" Typo="Typo.subtitle1" GutterBottom="true">Start searching by selecting day(s)</MudText>
+
+    <MudSelect Class="mx-2 mt-2 mb-6"
+               CloseIcon="@Icons.Material.Filled.KeyboardArrowUp"
+               Dense="true"
+               Margin="Margin.Dense"
+               MultiSelection="true"
+               MultiSelectionTextFunc="@((days) => $"{days.Count} selected day{(days.Count == 1 ? "" : "s")}")"
+               OpenIcon="@Icons.Material.Filled.KeyboardArrowDown"
+               Placeholder="Select days..."
+               SelectAll="false"
+               T="DateTime"
+               Variant="Variant.Outlined"
+               @bind-SelectedValues="SelectedDates">
+        @foreach (var date in _dates)
+        {
+            <MudSelectItem T="DateTime" Value="@date">@date.ToString("ddd, yyyy-MM-dd")</MudSelectItem>
+        }
+    </MudSelect>
+
+    @if (_filterLoading)
+    {
+        <MudProgressLinear Color="Color.Primary" Indeterminate="true" />
+        <MudText Align="Align.Center" Typo="Typo.body1">Loading filter...</MudText>
+    }
+    else
+    {
+        <MudExpansionPanels Class="mt-n4" Dense="true" DisableGutters="true" Elevation="0">
+            <MudExpansionPanel DisableGutters="true" Dense="true" Text="Additional filter">
+                <MudTreeView Dense="true" Items="@_treeItems" MultiSelection="true" ExpandOnClick="true">
+                    <ItemTemplate>
+                        <MudTreeViewItem @bind-Expanded="@context.IsExpanded" Items="@context.Children">
+                            <Content>
+                                <MudTreeViewItemToggleButton @bind-Expanded="@context.IsExpanded" Visible="@context.HasChildren" />
+                                <MudCheckBox T="bool?" Checked="@(context.HasPartialChildSelection() ? null : context.IsChecked)" CheckedChanged="@((e) => CheckedChanged(context))" />
+                                <MudText>@context.Text</MudText>
+                            </Content>
+                        </MudTreeViewItem>
+                    </ItemTemplate>
+                </MudTreeView>
+            </MudExpansionPanel>
+        </MudExpansionPanels>
+    }
+
+    <MudContainer Class="mx-0 mt-2 mb-0 pa-0 d-flex justify-end">
+        <MudButton Class="mr-2" DisableElevation="true" Variant="Variant.Text" OnClick="@FilterReset">Reset</MudButton>
+        <MudButton DisableElevation="true" Disabled="@(!SelectedDates.Any())" Color="Color.Primary" Variant="Variant.Filled" OnClick="@FilterSubmit">Search</MudButton>
+    </MudContainer>
+
+</MudContainer>
